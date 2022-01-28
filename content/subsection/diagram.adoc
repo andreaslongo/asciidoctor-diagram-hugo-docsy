@@ -1,0 +1,296 @@
+---
+title: Asciidoctor diagrams
+description: Create diagrams with asciidoctor and hugo
+---
+
+
+= Asciidoctor diagrams
+:toc: left
+
+
+Test environment: `docker.io/klakegg/hugo:0.91.2-ext-asciidoctor` (Alpine Linux)
+
+
+== Installation
+
+Install the `asciidoctor-diagram` plugin.
+
+----
+# Alpine Linux
+
+# Build dependencies (for json gem)
+apk add gcc libc-dev ruby-dev
+
+# Runtime dependencies
+akp add graphviz openjdk8-jre
+gem install --no-document json asciidoctor-diagram
+----
+
+Configure hugo to use the plugin.
+
+.config.yaml
+----
+markup:
+  asciidocExt:
+    extensions: ["asciidoctor-diagram"]
+    workingFolderCurrent: true
+    attributes:
+      diagram-cachedir: .cache
+----
+
+
+
+== Create diagrams
+
+See the Asciidoctor docs for supported syntax.
+
+- https://docs.asciidoctor.org/diagram-extension/latest/#creating-a-diagram[Creating a Diagram]
+- https://docs.asciidoctor.org/asciidoc/latest/blocks/delimited/#summary-of-structural-containers[Summary of structural containers]
+
+=== Delimited block, type: literal
+
+.Source
+----
+.Rendered diagram
+[plantuml]
+....
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+....
+----
+
+.Rendered diagram
+[plantuml]
+....
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+....
+
+.HTML output: asciidoctor (without asciidoctor-diagram)
+----
+<div class="literalblock">
+  <div class="title">Rendered diagram</div>
+  <div class="content">
+    <pre>
+      class BlockProcessor
+      class DiagramBlock
+      class DitaaBlock
+      class PlantUmlBlock
+
+      BlockProcessor &lt;|-- DiagramBlock
+      DiagramBlock &lt;|-- DitaaBlock
+      DiagramBlock &lt;|-- PlantUmlBlock
+    </pre>
+  </div>
+</div>
+----
+
+
+
+
+=== Delimited block, type: open
+
+.Source
+----
+.Rendered diagram
+[plantuml]
+--
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+--
+----
+
+NOTE: This syntax renders diagrams with `asciidoctor` + `asciidoctor-diagram`, but it doesn't render diagrams with the Firefox plugin `Asciidoctor.js Preview`.
+
+.Rendered diagram
+[plantuml]
+--
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+--
+
+
+.HTML output: asciidoctor (without asciidoctor-diagram)
+----
+<div class="openblock plantuml">
+  <div class="title">Rendered diagram</div>
+  <div class="content">
+    <div class="paragraph">
+      <p>
+        class BlockProcessor
+        class DiagramBlock
+        class DitaaBlock
+        class PlantUmlBlock
+      </p>
+    </div>
+    <div class="paragraph">
+      <p>
+        BlockProcessor &lt;|-- DiagramBlock
+        DiagramBlock &lt;|-- DitaaBlock
+        DiagramBlock &lt;|-- PlantUmlBlock
+      </p>
+    </div>
+  </div>
+</div>
+----
+
+
+=== Delimited block, type: listing
+
+.Source
+-----
+.Rendered diagram
+[plantuml]
+----
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+----
+-----
+
+.Rendered diagram
+[plantuml]
+----
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+----
+
+.HTML output: asciidoctor (without asciidoctor-diagram)
+----
+<div class="listingblock">
+  <div class="title">Rendered diagram</div>
+  <div class="content">
+    <pre>
+      class BlockProcessor
+      class DiagramBlock
+      class DitaaBlock
+      class PlantUmlBlock
+
+      BlockProcessor &lt;|-- DiagramBlock
+      DiagramBlock &lt;|-- DitaaBlock
+      DiagramBlock &lt;|-- PlantUmlBlock
+    </pre>
+  </div>
+</div>
+----
+
+=== Delimited block, type listing + source
+
+.Source
+-----
+.Rendered diagram
+[source, plantuml]
+----
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+----
+-----
+
+[NOTE]
+====
+This syntax renders diagrams with https://www.docsy.dev/[Docsy's] PlantUML plugin, but it doesn't render diagrams with `asciidoctor` + `asciidoctor-diagram`.
+
+Docsy is a hugo theme for creating documentation sites.
+
+.config.yaml
+----
+params:
+  plantuml:
+    enable: true
+----
+
+====
+
+
+.Rendered diagram
+[source, plantuml]
+----
+class BlockProcessor
+class DiagramBlock
+class DitaaBlock
+class PlantUmlBlock
+
+BlockProcessor <|-- DiagramBlock
+DiagramBlock <|-- DitaaBlock
+DiagramBlock <|-- PlantUmlBlock
+----
+
+
+.HTML output: asciidoctor (without asciidoctor-diagram)
+----
+<div class="listingblock">
+  <div class="title">Rendered diagram</div>
+  <div class="content">
+    <pre class="highlight">
+      <code class="language-plantuml" data-lang="plantuml">
+        class BlockProcessor
+        class DiagramBlock
+        class DitaaBlock
+        class PlantUmlBlock
+
+        BlockProcessor &lt;|-- DiagramBlock
+        DiagramBlock &lt;|-- DitaaBlock
+        DiagramBlock &lt;|-- PlantUmlBlock
+      </code>
+    </pre>
+  </div>
+</div>
+----
+
+== Generate diagrams
+
+.Convert this document to HTML
+----
+asciidoctor --attribute skip-front-matter --require asciidoctor-diagram --trace --verbose diagram.adoc
+----
+
+.Run hugo
+----
+hugo server --destination public --verbose
+----
+
+.Run hugo (container)
+----
+hugo server --baseURL=http://localhost:8081 --appendPort=false --destination public --verbose
+----

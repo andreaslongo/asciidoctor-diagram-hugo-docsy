@@ -1,0 +1,15 @@
+= Example
+
+This is an example on how to integrate https://asciidoctor.org[Asciidoctor] with support for https://plantuml.com[PlantUML] diagrams and the static site generator https://gohugo.io[Hugo] using the https://www.docsy.dev[Docsy] theme.
+
+
+== View example site
+
+https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy
+
+
+== Clone this repository
+
+----
+$ git clone --recurse-submodules https://github.com/andreaslongo/asciidoctor-diagram-hugo-docsy.git
+----

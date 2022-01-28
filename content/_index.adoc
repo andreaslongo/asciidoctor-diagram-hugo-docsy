@@ -1,0 +1,23 @@
+---
+title: Docs
+description: Docs.
+type: docs
+
+cascade:
+- type: docs
+  _target:
+    kind: page
+    path: "/**"
+
+- type: docs
+  _target:
+    kind: section
+    path: "/**"
+
+- type: home
+  _target:
+    kind: section
+    path: "/**"
+---
+
+= Docs
