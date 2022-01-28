@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/diagram/</loc>
+  </url><url>
+    <loc>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/subsection/diagram/</loc>
+  </url><url>
+    <loc>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/categories/</loc>
+  </url><url>
+    <loc>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/</loc>
+  </url><url>
+    <loc>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/subsection/</loc>
+  </url><url>
+    <loc>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/tags/</loc>
+  </url>
+</urlset>

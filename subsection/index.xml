@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Example – Subsection</title>
+    <link>https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/subsection/</link>
+    <description>Recent content in Subsection on Example</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="https://andreaslongo.github.io/asciidoctor-diagram-hugo-docsy/subsection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+  </channel>
+</rss>
